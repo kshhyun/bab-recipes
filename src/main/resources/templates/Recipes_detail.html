@@ -11,7 +11,7 @@
     <header>
         <div class="header-container">
             <div class="logo" id="logo">
-                <a href="/main" class="no-underline">
+                <a th:href="@{/main}" class="no-underline">
                     <p>밥 묵자</p>
                 </a>
                 <img th:src="@{/images/rice_bowl.png}" alt="밥 묵자 로고">
@@ -38,12 +38,12 @@
         </div>
     </header>
     <main>
-        <div class="recipe-container">
-            
+        <div class="recipe-container" th:if="${recipe}">
+
             <div class="foodimg">
-                <p>양지수육전골</p>
+                <p th:text="${recipe.title}"></p>
                 <div class="recipe-image">
-                    <img src="/images/images%201.png" alt="양지수육전골">
+                    <img th:src="${recipe.mediaUrl}" th:alt="${recipe.title}">
                 </div>
             </div>
             <div class="icon-container">
@@ -54,37 +54,41 @@
                 </div>
                 <div class="icon-right">
                     <div class="share">
-                        <img src="/images/Share%202.png" alt="공유 아이콘">
+                        <img th:src="@{/images/Share2.png}" alt="공유 아이콘">
                     </div>
                     <div class="bookmark">
-                        <img id="bookmark-icon" src="/images/bookmark.png" alt="북마크 아이콘" onclick="toggleBookmark()">
+                        <img id="bookmark-icon" th:src="@{/images/bookmark.png}" alt="북마크 아이콘" onclick="toggleBookmark()">
                     </div>
                 </div>
             </div>
             
             <div class="details">
-                <a href="https://www.coupang.com/np/categories/393760" class="material-link" target="_blank">부족한 재료 가지러 가기 > </a>
+                <a th:href="@{https://www.coupang.com/np/categories/393760}" class="material-link" target="_blank">부족한 재료 가지러 가기 > </a>
                 <div class="detail-tap1">
                     <p>재료</p>
                     <div class="toggle-button" onclick="toggleDetails('ingredients')">
                         <div class="btn">자세히 보기
-                            <img id="ingredients-icon" src="/images/Chevrondown.png" alt="토글 아이콘">
+                            <img id="ingredients-icon" th:src="@{/images/Chevrondown.png}" alt="토글 아이콘">
                         </div>
                     </div>
-                </div>  
+                </div>
                 <div id="ingredients" class="content">
-                    <p>감자 . 5만개</p>
+                    <p class="ingredient-tag" th:each="ingredient : ${recipe.ingredients}">
+                        <span th:text="${ingredient.key}"></span>: <span th:text="${ingredient.value}"></span>
+                    </p>
                 </div>
                 <div class="detail-tap2">
                     <p>Recipe</p>
                     <div class="toggle-button" onclick="toggleDetails('recipe')">
-                        <div class="btn">자세히 봐야 맛있어진다
-                            <img id="recipe-icon" src="/images/Chevrondown.png" alt="토글 아이콘">
+                        <div class="btn">자세히 보기
+                            <img id="recipe-icon" th:src="@{/images/Chevrondown.png}" alt="토글 아이콘">
                         </div>
                     </div>
                 </div>
                 <div id="recipe" class="content">
-                    <p>Step1 . aagafafaf</p>
+                    <p class="ingredient-tag" th:each="step : ${recipe.steps}">
+                        <span th:text="${step.key}"></span>: <span th:text="${step.value}"></span>
+                    </p>
                 </div>
             </div>
         </div>

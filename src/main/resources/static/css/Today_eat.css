@@ -108,7 +108,7 @@
     color: #FF0000;
 }
 
-.searchButton {
+.search-button {
     padding: 10px 90px;
     background: #385F41;
     border: none;
@@ -135,7 +135,7 @@
         width: calc(100% - 20px);
     }
 
-    .searchButton {
+    .search-button {
         padding: 10px 50px;
     }
 }

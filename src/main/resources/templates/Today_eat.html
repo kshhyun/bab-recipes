@@ -41,7 +41,7 @@
 
 
     <div class="container">
-
+        <form action="/search" method="post">
         <div class="search-section">
             <p>오늘 뭐 먹지?</p>
             <div class="input-group">
@@ -52,6 +52,10 @@
                 <label for="exclude-items">이건 못 먹어요</label>
                 <input type="text" id="exclude-items" placeholder="재료를 입력해주세요">
             </div>
+            <!-- 숨겨진 입력 필드 -->
+            <input type="hidden" name="fridgeTags" id="hidden-fridge-tags">
+            <input type="hidden" name="excludeTags" id="hidden-exclude-tags">
+
             <!-- 태그들이 추가될 컨테이너 -->
             <div class="tags fridge-tags">
                 <!-- 냉장고 속 재료 태그들이 추가될 위치 -->
@@ -59,9 +63,9 @@
             <div class="tags exclude-tags">
                 <!-- 못 먹는 재료 태그들이 추가될 위치 -->
             </div>
-            <button class="searchButton">검색</button>
+            <button type="submit" class="search-button">검색</button>
         </div>
-
+        </form>
     </div>
     <script th:src="@{/js/Today.js}"></script>
     <script th:src="@{/js/Top_ui.js}"></script>

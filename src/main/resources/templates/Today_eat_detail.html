@@ -63,12 +63,13 @@
             <div class="recipe-list" th:if="${recipes}">
 
                 <div class="recipe-item" th:each="recipe : ${recipes}">
+                    <input type="hidden" th:value="${recipe.id}">
                     <img  th:src="${recipe.mediaUrl}" th:alt="${recipe.title}">
                     <div class="recipe-details">
                         <h3 th:text="${recipe.title}"></h3>
-                        <p>말랑한 감자로 만든 감자채 볶음</p>
+
                         <div class="ingredient-tags">
-                            <p class="ingredient-tag" th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient}"></p>
+                            <p class="ingredient-tag" th:each="ingredient : ${recipe.ingredients.keySet()}" th:text="${ingredient}"></p>
                         </div>
                     </div>
                     <div class="recipe-meta">

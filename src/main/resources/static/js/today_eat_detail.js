@@ -18,3 +18,17 @@ document.querySelectorAll('.sort-option').forEach(option => {
         // sortRecipes(this.id); // 예: sort-high 또는 sort-low에 따라 정렬
     });
 });
+
+document.addEventListener('DOMContentLoaded', function (){
+    const recipeItems = document.querySelectorAll('.recipe-item');
+    console.log("눌렸다")
+    recipeItems.forEach(item => {
+        item.addEventListener('click', function(){
+            const hiddenInput = this.querySelector('input[type="hidden"]');
+            const recipeId = hiddenInput.value;
+
+            window.location.href = '/recipe/detail/' + recipeId;
+        })
+    })
+
+})
