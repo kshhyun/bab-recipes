@@ -21,7 +21,6 @@ public class UserController {
     @GetMapping("/main")
     public String loginSuccess(Model model, @AuthenticationPrincipal OAuth2User principal) {
         if (principal != null) {
-            model.addAttribute("name", principal.getAttribute("nickname"));
             model.addAttribute("email", principal.getAttribute("email"));
         }
         return "main";
