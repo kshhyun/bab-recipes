@@ -18,9 +18,9 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        //http.csrf().disable(); // 개발 중에는 CSRF 비활성화
-        http.authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/", "/css/**", "/images/**", "/js/**", "/webjars/**").permitAll()
+        http.csrf().disable() // 개발 중에는 CSRF 비활성화
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/", "/css/**", "/images/**", "/js/**", "/webjars/**", "/login").permitAll() // /login 경로에 대한 접근 허용
                         .requestMatchers("/board/**").hasRole("USER")
                         .anyRequest().authenticated()
                 )
@@ -37,4 +37,5 @@ public class SecurityConfig {
 
         return http.build();
     }
+
 }
