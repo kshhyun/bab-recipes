@@ -21,8 +21,8 @@ public class User {
     @Column(name = "userEmail", nullable = false, length = 100)
     private String userEmail;
 
-    @Column(name = "userName", nullable = false, length = 100)
-    private String userName;
+//    @Column(name = "userName", nullable = false, length = 100)
+//    private String userName;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -33,13 +33,13 @@ public class User {
         return userEmail;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+//    public String getUserName() {
+//        return userName;
+//    }
+//
+//    public void setUserName(String userName) {
+//        this.userName = userName;
+//    }
 
     public Long getUserId() {
         return userId;
@@ -60,10 +60,9 @@ public class User {
         private final String value;
     }
 
-    public static User setUser(Long userId, String userName, String userEmail, Role role) {
+    public static User setUser(Long userId, String userEmail, Role role) {
         User user = new User();
         user.userId = userId;
-        user.userName = userName;
         user.userEmail = userEmail;
         user.role = role;
         return user;

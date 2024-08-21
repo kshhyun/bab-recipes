@@ -33,16 +33,14 @@ public class UserService extends DefaultOAuth2UserService {
         Map<String, Object> attributes = oAuth2User.getAttributes();
         Map<String, Object> response = (Map<String, Object>) attributes.get("response");
         String userEmail = (String) response.get("email");
-        String userName = (String) response.get("nickname");
 
-        if (userEmail == null || userName == null) {
+        if (userEmail == null) {
             throw new OAuth2AuthenticationException("로그인 실패");
         }
 
         User user = userRepository.findByUserEmail(userEmail)
-                .orElseGet(() -> User.setUser(null, userName, userEmail, Role.USER));
+                .orElseGet(() -> User.setUser(null, userEmail, Role.USER));
         user.setUserEmail(userEmail);
-        user.setUserName(userName);
         userRepository.save(user);
 
         // 08.13 추가
