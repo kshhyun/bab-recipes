@@ -29,7 +29,7 @@ public class SecurityConfig {
                 )
                 .oauth2Login(oauth2 -> oauth2
                         .loginPage("/login") // /login 경로로 이동 시 login.html이 보이도록 설정
-                        .defaultSuccessUrl("/main", true) // 로그인 성공 시 main 페이지로 이동
+                        .defaultSuccessUrl("/main_search", true) // 로그인 성공 시 main 페이지로 이동
                         .userInfoEndpoint(userInfo -> userInfo
                                 .userService(customOAuth2UserService)
                         )

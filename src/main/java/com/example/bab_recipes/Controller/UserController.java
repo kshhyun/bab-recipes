@@ -23,6 +23,6 @@ public class UserController {
         if (principal != null) {
             model.addAttribute("email", principal.getAttribute("email"));
         }
-        return "main";
+        return "main_search";
     }
 }
