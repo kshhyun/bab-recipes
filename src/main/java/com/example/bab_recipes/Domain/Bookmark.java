@@ -7,6 +7,7 @@ import lombok.Getter;
 @Entity
 public class Bookmark {
 
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookmarkId;
@@ -16,12 +17,15 @@ public class Bookmark {
     @JoinColumn(name="userId") //foreign key(userId) reference User (UserId)
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name="recipeId")
-    private Recipes recipes;
+    //mongo
+    @Getter
+    private String recipeId;
 
-    public Long getBookmarkId() {
-        return bookmarkId;
+    public Bookmark() {
     }
 
+    public Bookmark(Long userId, String recipeId) {
+        this.user = user;
+        this.recipeId = recipeId;
+    }
 }

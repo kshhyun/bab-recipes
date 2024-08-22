@@ -12,38 +12,23 @@ import java.io.Serializable;
 @Entity
 public class User {
 
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "userId")
     private Long userId;
 
+    @Getter
     @Setter
     @Column(name = "userEmail", nullable = false, length = 100)
     private String userEmail;
 
-//    @Column(name = "userName", nullable = false, length = 100)
-//    private String userName;
+
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
 
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-//    public String getUserName() {
-//        return userName;
-//    }
-//
-//    public void setUserName(String userName) {
-//        this.userName = userName;
-//    }
-
-    public Long getUserId() {
-        return userId;
-    }
 
     public String getRoleKey(){
         return this.role.toString();

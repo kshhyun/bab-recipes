@@ -1,15 +1,38 @@
-function toggleBookmark() {
+function toggleBookmark(recipeId) {
     var bookmarkIcon = document.getElementById('bookmark-icon');
     var currentSrc = bookmarkIcon.src;
 
-    var bookmarkSrc = currentSrc.replace('bookmark_filled.png', 'bookmark.png');
-    var bookmarkFilledSrc = currentSrc.replace('bookmark.png', 'bookmark_filled.png');
+    // URL 경로 설정
+    var bookmarkUrl = currentSrc.includes('bookmark.png') ? '/bookmark/add' : '/bookmark/remove';
 
-    if (currentSrc.includes('bookmark.png')) {
-        bookmarkIcon.src = bookmarkFilledSrc;
-    } else {
-        bookmarkIcon.src = bookmarkSrc;
-    }
+    // AJAX 요청
+    fetch(bookmarkUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ recipeId: recipeId }),
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // 아이콘 상태 변경
+                var bookmarkSrc = currentSrc.replace('bookmark_filled.png', 'bookmark.png');
+                var bookmarkFilledSrc = currentSrc.replace('bookmark.png', 'bookmark_filled.png');
+
+                if (currentSrc.includes('bookmark.png')) {
+                    bookmarkIcon.src = bookmarkFilledSrc;
+                } else {
+                    bookmarkIcon.src = bookmarkSrc;
+                }
+                alert('북마크를 설정하였습니다.')
+            } else {
+                alert('북마크 처리에 실패했습니다.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }
 
 function toggleDetails(id) {

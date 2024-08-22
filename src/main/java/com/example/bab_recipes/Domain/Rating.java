@@ -1,6 +1,7 @@
 package com.example.bab_recipes.Domain;
 
 import jakarta.persistence.*;
+import lombok.Setter;
 
 @Table(name = "Rating")
 @Entity
@@ -10,14 +11,12 @@ public class Rating {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ratingId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "recipeId")
-    private Recipes recipes;
-
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId")
     private User user;
 
+    @Setter
     @Column(nullable = false)
     private Double rating;
 
@@ -25,9 +24,6 @@ public class Rating {
         return ratingId;
     }
 
-    public Recipes getRecipes() {
-        return recipes;
-    }
 
     public User getUser() {
         return user;
@@ -37,15 +33,5 @@ public class Rating {
         return rating;
     }
 
-    public void setRecipes(Recipes recipes) {
-        this.recipes = recipes;
-    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public void setRating(Double rating) {
-        this.rating = rating;
-    }
 }

@@ -42,8 +42,19 @@
 
             <div class="foodimg">
                 <p th:text="${recipe.title}"></p>
+
                 <div class="recipe-image">
-                    <img th:src="${recipe.mediaUrl}" th:alt="${recipe.title}">
+                    <!-- 이미지 파일인 경우 -->
+                    <div th:if="${#strings.endsWith(recipe.mediaUrl, '.jpg') or #strings.endsWith(recipe.mediaUrl, '.jpeg') or #strings.endsWith(recipe.mediaUrl, '.png')}">
+                        <img th:src="${recipe.mediaUrl}" th:alt="${recipe.title}">
+                    </div>
+
+                    <!-- 동영상 파일인 경우 -->
+                    <div th:if="${#strings.endsWith(recipe.mediaUrl, '.mp4') or #strings.endsWith(recipe.mediaUrl, '.webm')}">
+                        <video controls th:src="${recipe.mediaUrl}" th:alt="${recipe.title}">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
                 </div>
             </div>
             <div class="icon-container">
@@ -87,7 +98,8 @@
                 </div>
                 <div id="recipe" class="content">
                     <p class="ingredient-tag" th:each="step : ${recipe.steps}">
-                        <span th:text="${step.key}"></span>: <span th:text="${step.value}"></span>
+                        <span th:text="${step.key}"></span>:
+                        <span th:utext="${#strings.contains(step.value, '(') ? step.value.replace('(', '<br/>&nbsp;&nbsp;&nbsp;&nbsp;(') : step.value}"></span>
                     </p>
                 </div>
             </div>

@@ -44,7 +44,7 @@
                 <label for="ingredient">냉장고 속 재료:</label>
                 <div id="ingredient" class="filter-item" th:text="${#strings.listJoin(fridgeItems, ', ')}"></div>
                 <label for="avoid">이건 못 먹어요:</label>
-                <div id="avoid" class="filter-item" th:text="${#strings.listJoin(excludedItems, ', ')}"></div>
+                <div id="avoid" class="filter-item" th:text="${#strings.listJoin(excludeItems, ', ')}"></div>
             </div>
         </section>
 
@@ -64,7 +64,19 @@
 
                 <div class="recipe-item" th:each="recipe : ${recipes}">
                     <input type="hidden" th:value="${recipe.id}">
-                    <img  th:src="${recipe.mediaUrl}" th:alt="${recipe.title}">
+
+                    <!-- 이미지 파일인 경우 -->
+                    <div th:if="${#strings.endsWith(recipe.mediaUrl, '.jpg') or #strings.endsWith(recipe.mediaUrl, '.jpeg') or #strings.endsWith(recipe.mediaUrl, '.png')}">
+                        <img th:src="${recipe.mediaUrl}" th:alt="${recipe.title}" />
+                    </div>
+
+                    <!-- 동영상 파일인 경우 -->
+                    <div th:if="${#strings.endsWith(recipe.mediaUrl, '.mp4') or #strings.endsWith(recipe.mediaUrl, '.webm')}">
+                        <video controls th:src="${recipe.mediaUrl}" th:alt="${recipe.title}">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+
                     <div class="recipe-details">
                         <h3 th:text="${recipe.title}"></h3>
 
@@ -72,6 +84,7 @@
                             <p class="ingredient-tag" th:each="ingredient : ${recipe.ingredients.keySet()}" th:text="${ingredient}"></p>
                         </div>
                     </div>
+
                     <div class="recipe-meta">
                         <div class="bookmark">
                             <img class="bookmark-icon" th:src="@{/images/bookmark.png}" alt="북마크 아이콘">
@@ -79,7 +92,6 @@
                         <p class="rating">★ 9.99 / 10</p>
                     </div>
                 </div>
-
 
             </div>
         </section>
