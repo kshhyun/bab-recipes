@@ -98,9 +98,7 @@ public class TodayController {
         Optional<MongoRecipe> recipe = (Optional<MongoRecipe>) model.asMap().get("recipe");
 
         Long userId = (Long) session.getAttribute("userId");
-        boolean mark = markService.isBookMark(userId);
 
-        model.addAttribute("mark", mark);
         model.addAttribute("recipe", recipe.get());
         return "Recipes_detail";
     }

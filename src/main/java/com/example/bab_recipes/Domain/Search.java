@@ -14,8 +14,6 @@ public class Search {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="userId")
     private User user;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="recipeId")
-    private Recipes recipes;
+
 
 }
