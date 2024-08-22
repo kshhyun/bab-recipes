@@ -4,12 +4,11 @@
     font-weight: normal;
     font-style: normal;
 }
-
 .recipe-container {
     padding: 20px;
     position: relative;
     max-width: 900px;
-    min-height: 1200px;
+    min-height: 1500px;
     margin: 0 auto;
 }
 
@@ -28,7 +27,8 @@
     text-align: left;
 }
 
-.recipe-image img {
+.recipe-image img,
+.recipe-image video {
     width: 100%;
     height: auto;
     border-radius: 15px;
@@ -60,12 +60,12 @@
     font-weight: bold;
 }
 
-.share img, .bookmark img {
+.share img,
+.bookmark img {
     width: 25px;
     height: auto;
     cursor: pointer;
 }
-
 
 /* 부족한 재료 가지러 가기 */
 .material-link {
@@ -79,7 +79,7 @@
     text-decoration: none;
     text-align: right;
     right: 15px;
-    top : 25px
+    top : 25px;
 }
 
 /* Accordion */
@@ -89,9 +89,10 @@
     position: absolute;
     margin-top : 50px;
     width: 97%;
-    /* text-align: left; */
 }
-.detail-tap1 p{
+
+.detail-tap1 p,
+.detail-tap2 p {
     font-family: 'GowunDodum-Regular', serif;
     font-style: normal;
     font-size: 30px;
@@ -99,16 +100,12 @@
     text-align: left;
     margin-bottom: 5px;
 }
-.detail-tap2 p{
-    font-family: 'GowunDodum-Regular', serif;
-    font-style: normal;
-    font-size: 30px;
+
+.detail-tap2 p {
     margin-top: 30px;
-    text-align: left;
-    margin-bottom: 5px;
 }
 
-.detail-tap1{
+.detail-tap1 {
     margin-bottom: 2px;
 }
 
@@ -131,7 +128,8 @@
     background: #F5F5F5;
     width: 100%;
 }
-.toggle-button{
+
+.toggle-button {
     margin-bottom: 3px;
 }
 
@@ -158,7 +156,8 @@
     padding: 10px;
     margin-bottom: 30px;
 }
-.content p{
+
+.content p {
     font-size: 15px;
 }
 
